@@ -206,6 +206,7 @@
       </p>
       <button
         class="bg-white text-blue-900 font-semibold py-2 px-6 rounded-full hover:bg-gray-100 transition"
+        onclick="sharePage()"
       >
         Bagikan Sekarang
       </button>
@@ -216,4 +217,51 @@
       <p>&copy; 2025 Cekricek Hoax | Website edukasi oleh tim PKM</p>
     </footer>
   </body>
+  <script>
+    function sharePage() {
+      if (navigator.share) {
+        navigator
+          .share({
+            title: document.title,
+            url: window.location.href,
+          })
+          .then(() => {
+            alert(
+              "Terima kasih atas partisipasi Anda dalam membagikan tautan ini."
+            );
+          })
+          .catch((error) => {
+            alert("Maaf, terjadi kesalahan saat mencoba membagikan tautan.");
+          });
+      } else {
+        // Fallback jika browser tidak mendukung Web Share API
+        prompt(
+          "Silakan salin tautan berikut dan bagikan kepada orang lain:",
+          window.location.href
+        );
+      }
+    }
+  </script>
+  Atau versi salin ke clipboard dengan pesan formal: html Copy Edit
+  <button
+    class="bg-white text-blue-900 font-semibold py-2 px-6 rounded-full hover:bg-gray-100 transition"
+    onclick="copyLink()"
+  >
+    Bagikan Sekarang
+  </button>
+
+  <script>
+    function copyLink() {
+      navigator.clipboard
+        .writeText(window.location.href)
+        .then(() => {
+          alert(
+            "Tautan berhasil disalin ke papan klip. Anda dapat membagikannya sesuai kebutuhan."
+          );
+        })
+        .catch(() => {
+          alert("Maaf, tautan gagal disalin. Silakan salin secara manual.");
+        });
+    }
+  </script>
 </html>
